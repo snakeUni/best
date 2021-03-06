@@ -4,6 +4,9 @@ import { execSync } from 'child_process'
 
 const argv = minimist(process.argv.slice(2))
 
+console.log(chalk.cyan(`best v${require('../package.json').version}`))
+console.log(chalk.cyan(`vite v${require('vite/package.json').version}`))
+
 const exec = (command: string) => {
   execSync(command)
 }
