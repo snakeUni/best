@@ -34,7 +34,7 @@ export interface NavWithChildren {
   items?: MenuItem[]
 }
 
-export interface Config {
+export interface UserConfig {
   /**
    * 文档搜索的配置项
    */
