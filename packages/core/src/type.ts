@@ -34,7 +34,16 @@ export interface NavWithChildren {
   items?: MenuItem[]
 }
 
-export interface UserConfig {
+// 配置可参考 https://vitepress.vuejs.org/config/basics.html
+export interface UserConfig<ThemeConfig = any> {
+  /**
+   * 语言
+   */
+  lang?: string
+  /**
+   * base
+   */
+  base?: string
   /**
    * 文档搜索的配置项
    */
@@ -47,6 +56,30 @@ export interface UserConfig {
    * 文档的描述，用于显示在标题下方
    */
   description?: string
+  /**
+   * 主题配置，也可以配置自己的 layout
+   */
+  themeConfig?: ThemeConfig
+}
+
+/**
+ * 站点 site 相关配置
+ */
+export interface SiteConfig<ThemeConfig = any> {
+  root: string
+  /**
+   * config 路径，默认是项目根目录下的 .bestrc, best.config.js, best.config.ts
+   */
+  configPath: string
+  /**
+   * 默认使用 theme 包的主题
+   */
+  themeDir: string
+  outDir: string
+  site: SiteData<ThemeConfig>
+}
+
+export interface ThemeConfig {
   /**
    * 侧边栏菜单的配置
    * 'auto' 按照约定的文件结构
@@ -61,4 +94,12 @@ export interface UserConfig {
    * 比如：/public/images/xxx.png，那么配置 /images/xx.png 引入即可
    */
   logo?: string
+}
+
+export interface SiteData<ThemeConfig = any> {
+  lang: string
+  base: string
+  title: string
+  description: string
+  themeConfig: ThemeConfig
 }
