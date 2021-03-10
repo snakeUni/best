@@ -1,6 +1,7 @@
 import path from 'path'
 import chalk from 'chalk'
 import fxExtra from 'fs-extra'
+import globby from 'globby'
 import { DEFAULT_THEME } from './constant'
 import { UserConfig, SiteConfig } from '../type'
 
@@ -66,15 +67,16 @@ export async function resolveConfig(root: string = process.cwd()) {
   const userThemeDir = resolve(root, 'theme')
   const existUserThemeDir = fxExtra.pathExistsSync(userThemeDir)
   const themeDir = existUserThemeDir ? userThemeDir : DEFAULT_THEME
-  const useBasicTheme = existUserThemeDir ? false : true
 
   const config: SiteConfig = {
     root,
     themeDir,
     site: siteData,
     configPath: getResolveConfigPath(root) || resolveConfigPath(root, 'best.config.js'),
-    outDir: resolve(root, 'dist')
+    outDir: resolve(root, 'dist'),
+    // 目前只针对 md 的文件，后续也允许其他文件
+    pages: await globby(['**.md'], { cwd: root, ignore: ['node_modules'] })
   }
 
-  return { config, useBasicTheme }
+  return config
 }

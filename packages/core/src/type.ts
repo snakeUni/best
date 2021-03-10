@@ -1,5 +1,5 @@
 // 文档的配置项, 也可以使用 defineConfig 来支持 ts，通知也支持使用 yml 来配置
-
+import MarkdownIt from 'markdown-it'
 export interface Algolia {
   apiKey: string
   indexName: string
@@ -34,6 +34,11 @@ export interface NavWithChildren {
   items?: MenuItem[]
 }
 
+export type MdPlugin =
+  | MarkdownIt.PluginSimple
+  | MarkdownIt.PluginWithOptions
+  | MarkdownIt.PluginWithParams
+
 // 配置可参考 https://vitepress.vuejs.org/config/basics.html
 export interface UserConfig<ThemeConfig = any> {
   /**
@@ -60,10 +65,14 @@ export interface UserConfig<ThemeConfig = any> {
    * 主题配置，也可以配置自己的 layout
    */
   themeConfig?: ThemeConfig
+  /**
+   * 自定义 md 插件
+   */
+  mdPlugins?: MdPlugin[]
 }
 
 /**
- * 站点 site 相关配置
+ * 站点 site 相关配置, 内部配置
  */
 export interface SiteConfig<ThemeConfig = any> {
   root: string
@@ -77,6 +86,10 @@ export interface SiteConfig<ThemeConfig = any> {
   themeDir: string
   outDir: string
   site: SiteData<ThemeConfig>
+  /**
+   * 页面文件的路径
+   */
+  pages: string[]
 }
 
 export interface ThemeConfig {
