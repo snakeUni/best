@@ -116,3 +116,9 @@ export interface SiteData<ThemeConfig = any> {
   description: string
   themeConfig: ThemeConfig
 }
+
+export interface Header {
+  level: number
+  title: string
+  slug: string
+}
