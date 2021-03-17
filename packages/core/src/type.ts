@@ -122,3 +122,15 @@ export interface Header {
   title: string
   slug: string
 }
+
+// 页面数据，用 gray-matter 解析
+export interface PageData {
+  relativePath: string
+  title: string
+  description: string
+  headers: Header[]
+  frontmatter: Record<string, any>
+  lastUpdated: number
+}
+
+export type HeadConfig = [string, Record<string, string>] | [string, Record<string, string>, string]

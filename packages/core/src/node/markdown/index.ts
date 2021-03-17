@@ -35,7 +35,7 @@ export interface MarkdownRenderer {
   render: (src: string, env?: any) => { html: string; data: any }
 }
 
-export function createMdRender(root: string, options: MarkdownOptions = {}) {
+export function createMdRender(root: string, options: MarkdownOptions = {}): MarkdownRenderer {
   const md = MarkdownIt({
     html: true,
     linkify: true,
