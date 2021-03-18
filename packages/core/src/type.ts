@@ -1,5 +1,6 @@
 // 文档的配置项, 也可以使用 defineConfig 来支持 ts，通知也支持使用 yml 来配置
 import MarkdownIt from 'markdown-it'
+import { MarkdownOptions } from './node/markdown/index'
 export interface Algolia {
   apiKey: string
   indexName: string
@@ -90,6 +91,10 @@ export interface SiteConfig<ThemeConfig = any> {
    * 页面文件的路径
    */
   pages: string[]
+  /**
+   * markdown 的相关配置
+   */
+  markdown?: MarkdownOptions
 }
 
 export interface ThemeConfig {
