@@ -20,7 +20,16 @@ export const createBestPlugin = (
       define: {
         __SSR__: ssr
       }
-    })
+    }),
+    resolveId(id) {
+      if (id === '@!virtual-modules/theme') {
+        return id
+      }
+    },
+    async load(id) {
+      if (id === '@!virtual-modules/theme') {
+      }
+    }
   }
 
   return [reactRefreshPlugin, bestPlugin]
