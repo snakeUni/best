@@ -2,6 +2,7 @@ import path from 'path'
 import chalk from 'chalk'
 import fxExtra from 'fs-extra'
 import globby from 'globby'
+import { slash } from './utils/slash'
 import { DEFAULT_THEME } from './constant'
 import { UserConfig, SiteConfig } from '../type'
 
@@ -66,6 +67,7 @@ export async function resolveConfig(root: string = process.cwd()) {
   // resolve theme
   const userThemeDir = resolve(root, 'theme')
   const existUserThemeDir = fxExtra.pathExistsSync(userThemeDir)
+  // 默认是从 client App 中寻找
   const themeDir = existUserThemeDir ? userThemeDir : DEFAULT_THEME
 
   const config: SiteConfig = {
@@ -79,4 +81,12 @@ export async function resolveConfig(root: string = process.cwd()) {
   }
 
   return config
+}
+
+export async function resolveTheme(themePath: string) {
+  if (await fxExtra.pathExists(themePath)) {
+    return slash(themePath)
+  }
+
+  throw new Error("can't find theme: " + themePath)
 }

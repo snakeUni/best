@@ -1,11 +1,13 @@
 import reactRefresh from '@vitejs/plugin-react-refresh'
 import { Plugin } from 'vite'
+import { resolveTheme } from './config'
+import { VIRTUAL_THEME, VIRTUAL_DATA } from './constant'
 import { createMdToReactRenderFn } from './mdToReact'
 import { SiteConfig } from '../type'
 
 export const createBestPlugin = (
   root: string,
-  { configPath, site, pages, markdown }: SiteConfig,
+  { configPath, site, pages, markdown, themeDir }: SiteConfig,
   ssr = false
 ) => {
   const reactRefreshPlugin = reactRefresh()
@@ -22,12 +24,29 @@ export const createBestPlugin = (
       }
     }),
     resolveId(id) {
-      if (id === '@!virtual-modules/theme') {
+      // 处理在 client 里导入此模板
+      if (id === VIRTUAL_THEME) {
+        return id
+      }
+      if (id === VIRTUAL_DATA) {
         return id
       }
     },
     async load(id) {
-      if (id === '@!virtual-modules/theme') {
+      // 如果有自定义的主题则直接从文件中导出，否则使用默认主题
+      if (id === VIRTUAL_THEME) {
+        return `export { default } from "${await resolveTheme(themeDir)}"`
+      }
+
+      if (id === VIRTUAL_DATA) {
+        return `export default ${JSON.stringify(JSON.stringify(site))}`
+      }
+    },
+    transform(code, id) {
+      if (id.endsWith('.md')) {
+        // transform md to react src
+        const { reactSrc } = mdToReact(code, id)
+        return reactSrc
       }
     }
   }
