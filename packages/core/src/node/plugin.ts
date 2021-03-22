@@ -50,6 +50,5 @@ export const createBestPlugin = (
       }
     }
   }
-
   return [reactRefreshPlugin, bestPlugin]
 }
