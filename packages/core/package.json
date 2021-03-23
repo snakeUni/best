@@ -30,6 +30,7 @@
     "markdown-it-emoji": "^2.0.0",
     "markdown-it-table-of-contents": "^0.5.2",
     "minimist": "^1.2.5",
+    "react-router-dom": "^5.2.0",
     "vite": "^2.0.5"
   },
   "devDependencies": {
@@ -41,6 +42,7 @@
     "@types/markdown-it-anchor": "^7.0.0",
     "@types/markdown-it-container": "^2.0.3",
     "@types/markdown-it-emoji": "^2.0.0",
+    "@types/react-router-dom": "^5.1.7",
     "typescript": "^4.2.3"
   }
 }

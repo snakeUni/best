@@ -7,7 +7,7 @@ import { SiteConfig } from '../type'
 
 export const createBestPlugin = (
   root: string,
-  { configPath, site, pages, markdown, themeDir }: SiteConfig,
+  { site, pages, markdown, themeDir }: SiteConfig,
   ssr = false
 ) => {
   const reactRefreshPlugin = reactRefresh()
