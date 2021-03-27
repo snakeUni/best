@@ -1,7 +1,7 @@
 import reactRefresh from '@vitejs/plugin-react-refresh'
 import { Plugin } from 'vite'
 import { resolveTheme } from './config'
-import { VIRTUAL_THEME, VIRTUAL_DATA } from './constant'
+import { VIRTUAL_THEME, VIRTUAL_DATA, VIRTUAL_PAGES } from './constant'
 import { createMdToReactRenderFn } from './mdToReact'
 import { SiteConfig } from '../type'
 
@@ -31,6 +31,10 @@ export const createBestPlugin = (
       if (id === VIRTUAL_DATA) {
         return id
       }
+
+      if (id === VIRTUAL_PAGES) {
+        return id
+      }
     },
     async load(id) {
       // 如果有自定义的主题则直接从文件中导出，否则使用默认主题
@@ -40,6 +44,10 @@ export const createBestPlugin = (
 
       if (id === VIRTUAL_DATA) {
         return `export default ${JSON.stringify(JSON.stringify(site))}`
+      }
+
+      if (id === VIRTUAL_PAGES) {
+        return `export default ${JSON.stringify(JSON.stringify(pages))}`
       }
     },
     transform(code, id) {

@@ -10,6 +10,10 @@
   "bin": {
     "best": "bin/index.js"
   },
+  "scripts": {
+    "build-node": "tsc -p src/node",
+    "build-client": "stc -p src/client"
+  },
   "peerDependencies": {
     "react": "^17.0.1",
     "react-dom": "^17.0.1"

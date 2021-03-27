@@ -11,3 +11,4 @@ export const DEFAULT_THEME =
 // 虚拟的导入
 export const VIRTUAL_THEME = '@!virtual-modules/theme'
 export const VIRTUAL_DATA = '@!virtual-modules/data'
+export const VIRTUAL_PAGES = '@!virtual-modules/pages'
