@@ -3,9 +3,7 @@
   "compilerOptions": {
     "target": "es2019",
     "baseUrl": ".",
-    "outDir": "./dist",
-    "lib": ["ESNext", "DOM"],
-    "sourceMap": true
+    "lib": ["ESNext", "DOM"]
   },
   "include": ["src", "*.d.ts"]
 }

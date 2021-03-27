@@ -12,7 +12,8 @@
   },
   "scripts": {
     "build-node": "tsc -p src/node",
-    "build-client": "stc -p src/client"
+    "build-client": "tsc -p src/client",
+    "build": "rm -rf ./dist && yarn build-client && yarn build-node"
   },
   "peerDependencies": {
     "react": "^17.0.1",

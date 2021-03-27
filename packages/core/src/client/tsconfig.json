@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "target": "esnext",
+    "baseUrl": ".",
+    "outDir": "../../dist",
+    "lib": ["ESNext", "DOM"],
+    "module": "esnext"
+  },
+  "include": [".", "./types.d.ts", "../type.ts"]
+}
